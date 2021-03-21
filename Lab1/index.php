@@ -1,3 +1,8 @@
+
+<html>
+
+
+
 <?php
 	$name="";
 	$err_name="";
@@ -5,7 +10,7 @@
 	$err_pass="";
 	$Error=false;
 	$err_message="";
-	$user=array("Siam"=>"1234","Fahad"=>"1234","Atowar"=>"1234");
+	$U=array("Siam"=>"1234","Fahad"=>"1234","Atowar"=>"1234");
 	
 	
 	
@@ -26,7 +31,7 @@
 		}
 		if(!$Error){
 			$found=false;
-			foreach($user as $n=>$p){
+			foreach($U as $n=>$p){
 				if($n==$name && $p==$pass){
 					
 					header("Location: dashbrd.php");
@@ -37,10 +42,12 @@
 	}
 ?>
 
-<html>
+
+
+
 	<head>
     <style>
-        .err-msg{
+        #errormasageag{
         color:red;
         font-size:16px;
         font-weight:bold;
@@ -65,13 +72,13 @@
 					<tr>
 						<td><span>Username:</span> </td>
 						<td><input type="text" value="<?php echo $name;?>" placeholder="username" name="name">
-						<br><span class="err-msg"><?php echo $err_name;?></span>
+						<br><span id="errormasageag"><?php echo $err_name;?></span>
 						</td>
 					</tr>
 					<tr>
 						<td><span>Password: </span></td>
 						<td><input type="password" placeholder="password"  name="pass">
-						<br><span class="err-msg"><?php echo $err_pass;?></span></td>
+						<br><span id="errormasageag"><?php echo $err_pass;?></span></td>
 					</tr>
 					<tr>
 						<td colspan="3" align="right"><input type="submit"  value="Login" name="login">
