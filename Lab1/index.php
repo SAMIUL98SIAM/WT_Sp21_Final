@@ -4,40 +4,14 @@
 
 
 <?php
-	$name="";
-	$err_name="";
-	$pass="";
-	$err_pass="";
-	$Error=false;
-	$err_message="";
-	$U=array("Siam"=>"1234","Fahad"=>"1234","Atowar"=>"1234");
-	
-	
 	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		if(empty($_POST["name"])){
-			$err_name="Username Needed";
-			$Error = true;
-		}
-		else{
-			$name = htmlspecialchars($_POST["name"]);
-		}
-		if(empty($_POST["pass"])){
-			$err_pass="Password Needed";
-			$Error = true;
-		}
-		else{
-			$pass=htmlspecialchars($_POST["pass"]);
-		}
-		if(!$Error){
-			$found=false;
-			foreach($U as $n=>$p){
-				if($n==$name && $p==$pass){
-					
-					header("Location: dashbrd.php");
-				}
-			}
-			$err_message="Invalid username or password";		
+		$name = $_POST['u_name'] ;
+		$pass = $_POST['u_pass'] ;
+		if($name=="Siam" && $pass == "1234")
+		{
+			setcookie("u_name",$name,time()+120);
+			header("location: dashbrd.php");
 		}
 	}
 ?>
@@ -46,39 +20,23 @@
 
 
 	<head>
-    <style>
-        #errormasageag{
-        color:red;
-        font-size:16px;
-        font-weight:bold;
-        font-family:tahoma;
-}
-    </style>
-		
 	</head>
 	<body>
 		
 		
 		<div>
 		
-			
-			<table align="center">
-				<tr>
-					<td colspan="3" align="center"><span class="err-msg"><?php echo $err_message;?></span></td>
-				</tr>
-			</table>
 			<form action="" method="POST">
 				<table align="center">
 					<tr>
 						<td><span>Username:</span> </td>
-						<td><input type="text" value="<?php echo $name;?>" placeholder="username" name="name">
-						<br><span id="errormasageag"><?php echo $err_name;?></span>
+						<td><input type="text"  placeholder="username" name="u_name">
 						</td>
 					</tr>
 					<tr>
 						<td><span>Password: </span></td>
-						<td><input type="password" placeholder="password"  name="pass">
-						<br><span id="errormasageag"><?php echo $err_pass;?></span></td>
+						<td><input type="password" placeholder="password"  name="u_pass">
+						</td>
 					</tr>
 					<tr>
 						<td colspan="3" align="right"><input type="submit"  value="Login" name="login">
