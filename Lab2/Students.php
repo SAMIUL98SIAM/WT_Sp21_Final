@@ -1,5 +1,5 @@
 <?php
-    require_once "db_config.php";
+    require_once "db_con.php";
     $query ="select * from student";
     $res = get($query);
 ?>
